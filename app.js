@@ -2,7 +2,7 @@ const express = require("express");
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
 const path = require("path");
-
+const routes = require("./routes/router")
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -14,3 +14,6 @@ app.use(bodyParser.urlencoded({extended: true }));
 
 app.use('/', routes);
 
+app.listen(3000, ()=>{
+console.log("Server is running");
+});

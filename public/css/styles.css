@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.profile{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.login-button{
+    float: right;
+    top: 5px;
+    right: 5px;
+    position: absolute;
+}
+
+.login-button :hover{
+    text-decoration: none;
+    color: grey;
+}
+
+.about{
+    margin-top:8vh;
+}
+
+
+  
+  /* clear fix */
+  .grid:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  
+  /* ---- .grid-item ---- */
+  
+  .grid-sizer,
+  .grid-item {
+    width: 33.333%;
+  }
+  
+  .grid-item {
+    float: left;
+  }
+  
+  .grid-item img {
+    display: block;
+    max-width: 100%;
+  }
+  

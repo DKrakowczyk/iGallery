@@ -1,34 +1,25 @@
 <footer class="text-muted">
+    <hr>
     <div class="container">
-        <p class="float-right">
-            <a href="#">Back to top</a>
-        </p>
-        <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-        <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a
-                href="../../getting-started/">getting started guide</a>.</p>
+        <p class="profile"> COPYRIGHT 2019</p>
     </div>
 </footer>
 
-<!-- jQuery library -->
-<script src="js/isotope.js"></script>
 
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 <script>
-    var $grid = $('.grid').isotope({
-        itemSelector: '.grid-item',
-        percentPosition: true,
-        masonry: {
-            columnWidth: '.grid-sizer',
-            layoutMode: 'fitRows'
-        }
-    });
-    // layout Isotope after each image loads
-    $grid.imagesLoaded().progress(function () {
-        $grid.isotope('layout');
-    });  
+$('.grid').isotope({
+  itemSelector: '.grid-item',
+  percentPosition: true,
+  masonry: {
+    columnWidth: '.grid-sizer'
+  }
+});
+
 </script>
 <!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

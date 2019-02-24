@@ -1,0 +1,16 @@
+{
+  "name": "instagramclone",
+  "version": "1.0.0",
+  "description": "Simple app created to share your best photos",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "DKrakowczyk",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
+  }
+}

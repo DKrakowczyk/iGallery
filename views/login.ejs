@@ -4,18 +4,21 @@
     <div class="container">
         <div class="row">
                 <form class="form-signin" action="/login" method="POST">
-                        <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-                        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                        <label for="inputEmail" class="sr-only">Email address</label>
-                        <input type="text" name ="username" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                        <label for="inputPassword" class="sr-only">Password</label>
-                        <input type="password" name ="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                        <hr>
+                    <h1 class="profile h3 mb-3 font-weight-normal">please sign in.</h1>
+
+                        <input type="text" name ="username" class="form-control" placeholder="username." required autofocus>
                        
-                        <button  type="submit" class="profile btn btn-outline-dark btn-block">Log in</button>
-                        <a href="/register">
-                        <button type="button" href="/register" class=" profile btn btn-outline-dark btn-block">Register</button>
-                        </a>
-                        <button type="button" class=" profile btn btn-outline-dark btn-block">Connect with instagram</button>
+                        <input type="password" name ="password" class="form-control" placeholder="password." required>
+                       
+                        <button  type="submit" class="profile btn btn-outline-dark btn-block">log in</button>
+                        
+                        <% if(isRegistered === 0) { %>
+                        <a href="/register" class=" profile btn btn-outline-dark btn-block">sign up</a>
+                        <% } %>
+                        <a href="/auth/instagram" class=" profile btn btn-outline-dark btn-block">log in using instagram</a>
+                        
+                        <hr>
                         <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
                 </form>
 

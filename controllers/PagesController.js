@@ -1,12 +1,22 @@
 const User = require("../models/User");
-const passport = require("../auth/passport");
+/* User
+fields: {
+    username,
+    imagePath,
+    description
+}
+*/
+
+// Render login page
 exports.homePage = (req, res) => {
-    User.find((err, users) =>{
-        if(!err){
-            if(users.length > 0){
-                res.render("home", {photo: users[0].imagePath, desc: users[0].description});
+    User.find((err, users) => {
+        if (!err) {
+            if (users.length > 0) {
+                res.render("home", { photo: users[0].imagePath, username: users[0].username, desc: users[0].description });
             } else {
-                res.render("home", {photo: "users[0].imagePath", desc: "users[0].description"});
+                res.render("home", {
+                    photo: "images/avatars/default.jpg", username: "Default user", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mattis lacinia quam, sit amet pulvinar nisl volutpat id. Aenean non semper tellus, sed malesuada augue. Nullam posuere rutrum mi in scelerisque. Nulla ex nunc, feugiat eget diam at, fermentum sagittis dolor. Proin tempor augue vitae dui suscipit efficitur."
+                });
             }
         } else {
             res.redirect("/home");
@@ -15,13 +25,37 @@ exports.homePage = (req, res) => {
 
 }
 
+// Render login page
 exports.loginPage = (req, res) => {
-    User.find((err, users) =>{
-        if(!err){
-            if(users.length > 0){
-                res.render("login", {isRegistered: 1});
+    if (!req.isAuthenticated()) {
+        User.find((err, users) => {
+            if (!err) {
+                if (users.length > 0) {
+                    res.render("login", { isRegistered: 1 });
+                } else {
+                    res.render("login", { isRegistered: 0 });
+                }
             } else {
-                res.render("login", {isRegistered: 0});
+                res.redirect("/home");
+            }
+        });
+    } else {
+        res.redirect('/dashboard');
+    }
+}
+
+exports.registerPage = (req, res) => {
+    res.render('register');
+}
+
+// Render dashboard
+exports.dashboardPage = (req, res) => {
+    User.find((err, users) => {
+        if (!err) {
+            if (req.isAuthenticated()) {
+                res.render('dashboard/dashboard', {username :users[0].username});
+            } else {
+                res.redirect('/login');
             }
         } else {
             res.redirect("/home");
@@ -30,56 +64,27 @@ exports.loginPage = (req, res) => {
    
 }
 
-exports.registerPage = (req, res) => {
-    res.render('register');
-}
-exports.dashboardPage = (req, res) => {
-    if (req.isAuthenticated()) {
-        res.render('dashboard');
-    } else {
-        res.redirect('/login');
-    }
 
-}
-exports.registerUser = (req, res) => {
-    const username = req.body.username;
-    const Password = req.body.password;
-
-    User.register({ username: username, imagePath: "sciezka", description: "opis" }, Password, (err, user) => {
-        if (err) {
-            console.log(err);
-            res.redirect("/register");
+exports.dashboardProfile = (req, res) => {
+    User.find((err, users) => {
+        if (!err) {
+            if (req.isAuthenticated()) {
+                res.render('dashboard/profile', {username : users[0].username, imagePath: users[0].imagePath, description: users[0].description});
+            } else {
+                res.redirect('/login');
+            }
         } else {
-            passport.authenticate("local")(req, res, () => {
-                res.redirect("/dashboard");
-            });
+            res.redirect("/home");
         }
     });
 }
 
-exports.loginUser = (req, res) => {
-    const user = new User({
-        username: req.body.username,
-        password: req.body.password
-    });
 
-    req.login(user, (err) => {
-        if (err) {
-            console.log(err);
-            res.redirect("/register");
-        } else {
-            passport.authenticate("local")(req, res, () => {
-                res.redirect("/dashboard");
-            });
-        }
-    });
-}
 
-exports.authInstagram = passport.authenticate('instagram');
 
-exports.authCallback = ()=>{
-    passport.authenticate('instagram', {failureRedirect: '/login'}),
-    (req, res)=>{
-        res.redirect('/dashboard');
-    }
-}
+
+
+
+
+
+

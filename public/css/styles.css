@@ -4,14 +4,15 @@
     font-family: 'Montserrat';
     font-weight: lighter;
 }
+.profile{
+  text-align: center;
+}
 .img-circle{
     border-radius: 150px;
 }
 .login-button{
     float: right;
-    top: 5px;
-    right: 5px;
-    position: absolute;
+   
 }
 
 .login-button :hover{
@@ -41,6 +42,7 @@
   
   .grid-item {
     float: left;
+    transition: opacity 0.5s ease-in;
   }
   
   .grid-item img {
@@ -79,4 +81,15 @@
     border-top-right-radius: 0;
   }
 
-  
+  .span-login{
+    float: left;
+  }
+
+  .grid-item:hover{
+    opacity: 0.5;
+    pointer: cursor;
+  }
+
+  .img-button{
+
+  }

@@ -1,22 +1,22 @@
 const express = require("express");
 const router = express.Router();
 const PagesController = require('../controllers/PagesController');
-const passport = require("../auth/passport");
+const AuthController = require('../controllers/AuthController');
 
+
+// PagesController
 router.get('/', PagesController.homePage);
 router.get('/login', PagesController.loginPage);
-router.post('/login', PagesController.loginUser);
 router.get('/register', PagesController.registerPage);
-router.post('/register', PagesController.registerUser);
 router.get('/dashboard', PagesController.dashboardPage);
+router.get('/dashboard/profile', PagesController.dashboardProfile);
 
-router.get('/auth/instagram', PagesController.authInstagram);
-router.get('/auth/instagram/dashboard', 
-  passport.authenticate('instagram', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/dashboard');
-  });
+// AuthController
+router.post('/register', AuthController.registerUser);
+router.post('/login', AuthController.loginUser);
+// Instagram authorization
+router.get('/auth/instagram', AuthController.authInstagram);
+router.get('/auth/instagram/dashboard', AuthController.authInstagramFailure, AuthController.authInstagramCallback);
 
 
 module.exports = router;

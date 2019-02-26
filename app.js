@@ -16,8 +16,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // sessions
 app.use(session({
     secret: "Little secret",
-    resave: false,
-    saveUninitialized: false
+    resave: true,
+    saveUninitialized: true
 }));
 // passport 
 app.use(passport.initialize());

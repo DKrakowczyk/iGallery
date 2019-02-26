@@ -1,0 +1,51 @@
+<%- include('../partials/dashboard/header') %>
+
+
+
+<main role="main">
+
+
+    <div class="container">
+        <section class="update-profile ">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                </ol>
+            </nav>
+            </section>
+            <h5 class="text-muted">Personalize your profile data</h5>
+            <hr>
+            
+         
+            <form>
+                <div class="form-row align-items-center">
+                    <div class="col-8 ">
+                            <div class="form-group">
+                                
+                                    <input type="text" class="form-control" name="imageURL" placeholder="<%= imagePath %>">
+                                </div>  
+                               
+                                <div class="form-group">
+                                        <input type="text" class="form-control" name="username" placeholder="<%= username %>">
+                                    </div>
+                                    <div class="form-group">
+                                
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"><%= description %></textarea>
+                                        </div>
+                                        <button class="btn btn-danger">Update</button>
+                                    </div>
+                    
+                </div>
+
+
+              
+
+                
+            </form>
+
+    </div>
+    </section>
+</main>
+
+<%- include('../partials/dashboard/footer') %>

@@ -1,24 +1,20 @@
 <%- include('partials/header') %>
 
 <body>
-  <header>
-    <nav>
-      <div class="login-button">
-        <a href="/login" class="profile text-muted ">Log in</a>
-      </div>
-    </nav>
-  </header>
-
+ 
   <main role="main">
 
     <section class="about text-center">
       <div class="container">
-        <img width="200" height="200" src="<%= photo %>" class="img-circle" alt="Cinque Terre">
-        <h3 class="profile">wobiektywiefuczyka</h3>
+    
+        <img width="150" height="150" src="<%= photo %>" class=" img-circle" alt="Cinque Terre">
+        <h3 class="profile"><%= username %></h3>
         <p class="profile text-muted"><%= desc %></p>
       </div>
     </section>
+
     <hr class="separator">
+
     <section class="gallery">
       <div class="container">
      
@@ -81,5 +77,5 @@
       </div>
     </section>
   </main>
- 
+
   <%- include('partials/footer') %>

@@ -1,51 +1,75 @@
 <%- include('../partials/dashboard/header') %>
-
-
-
-<main role="main">
-
-
-    <div class="container">
-        <section class="update-profile ">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Profile</li>
-                </ol>
-            </nav>
-            </section>
-            <h5 class="text-muted">Personalize your profile data</h5>
-            <hr>
-            
-         
-            <form>
-                <div class="form-row align-items-center">
-                    <div class="col-8 ">
-                            <div class="form-group">
-                                
-                                    <input type="text" class="form-control" name="imageURL" placeholder="<%= imagePath %>">
-                                </div>  
-                               
-                                <div class="form-group">
-                                        <input type="text" class="form-control" name="username" placeholder="<%= username %>">
-                                    </div>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Edit Profile</h4>
+                    </div>
+                    <div class="content">
+                        <form method="POST" action="/dashboard/profile/update">
+                            <div class="row">
+                                <div class="col-md-5">
                                     <div class="form-group">
-                                
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"><%= description %></textarea>
-                                        </div>
-                                        <button class="btn btn-danger">Update</button>
+                                        <label>Username</label>
+                                        <input type="text" class="form-control" value="<%= username %>"
+                                            placeholder="Username" name="username">
                                     </div>
-                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Profile image (url)</label>
+                                            <input type="text" class="form-control" value="<%= imagePath %>"
+                                                placeholder="Username" name="imagePath">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>About Me</label>
+                                        <textarea rows="5" class="form-control"
+                                            placeholder="Here can be your description"
+                                            name = "description"><%= description %></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
                 </div>
+            </div>
 
+            <div class="col-md-4">
+                <div class="card card-user">
+                    <div class="image">
+                    </div>
+                    <div class="content">
+                        <div class="author">
+                            <a href="/">
+                                <img class="avatar border-gray" src="<%= imagePath %>" alt="..." />
 
-              
+                                <h4 class="title"><%= username %><br />
+                                    <small>photographer</small>
+                                </h4>
+                            </a>
+                        </div>
+                        <p class="description text-center"> <%= description %> </p>
+                    </div>
+                    <hr>
+                    <div class="text-center">
 
-                
-            </form>
+                    </div>
+                </div>
+            </div>
 
+        </div>
     </div>
-    </section>
-</main>
+</div>
 
 <%- include('../partials/dashboard/footer') %>

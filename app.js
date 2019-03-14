@@ -2,9 +2,11 @@ const express = require("express");
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
 const path = require("path");
-const routes = require("./routes/router")
 const passport = require("./auth/passport");
 const session = require("express-session"); //1
+// Routes
+const homeRoutes = require("./routes/homeRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -23,7 +25,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', routes);
+app.use('/', homeRoutes);
+app.use('/dashboard', dashboardRoutes);
 
 app.listen(3000, () => {
     console.log("Server is running");

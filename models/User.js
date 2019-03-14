@@ -12,6 +12,10 @@ imagePath: {
 description: {
     type: String, 
     default: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mattis lacinia quam, sit amet pulvinar nisl volutpat id. Aenean non semper tellus, sed malesuada augue. Nullam posuere rutrum mi in scelerisque. Nulla ex nunc, feugiat eget diam at, fermentum sagittis dolor. Proin tempor augue vitae dui suscipit efficitur."
+},
+accountType: {
+    type: String,
+    default: "local"
 }
 });
 

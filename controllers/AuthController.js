@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const passport = require("../auth/passport");
+
 /* User
 fields: {
     username,
@@ -51,4 +52,10 @@ exports.authInstagramFailure = passport.authenticate('instagram', { failureRedir
 
 exports.authInstagramCallback = (req, res) => {
     res.redirect('/dashboard');
+}
+
+// Logout
+exports.logout = (req, res) => {
+    req.logout();
+    res.redirect("/login");
 }

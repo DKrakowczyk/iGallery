@@ -23,8 +23,19 @@ passport.use(new InstagramStrategy({
 },
   function (accessToken, refreshToken, profile, done) {
 
-    User.findOrCreate({ instagramId: profile.id, username: profile.username, imagePath: profile._json.data.profile_picture, description: profile._json.data.bio }, function (err, user) {
-      return done(err, user);
+    User.find((err, users) => {
+      let newUser = undefined;
+      if(users.length < 1) {
+         newUser = new User({
+          instagramId: profile.id,
+          username: profile.username,
+          imagePath: profile._json.data.profile_picture,
+          description: profile._json.data.bio,
+          accountType : "instagram"
+        }).save();
+      } else {
+        return done(err, users[0]);
+      }
     });
   }
 ));

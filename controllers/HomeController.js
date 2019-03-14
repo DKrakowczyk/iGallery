@@ -31,7 +31,7 @@ exports.loginPage = (req, res) => {
         User.find((err, users) => {
             if (!err) {
                 if (users.length > 0) {
-                    res.render("login", { isRegistered: 1 });
+                    res.render("login", { isRegistered: 1, accountType: users[0].accountType });
                 } else {
                     res.render("login", { isRegistered: 0 });
                 }
@@ -47,44 +47,3 @@ exports.loginPage = (req, res) => {
 exports.registerPage = (req, res) => {
     res.render('register');
 }
-
-// Render dashboard
-exports.dashboardPage = (req, res) => {
-    User.find((err, users) => {
-        if (!err) {
-            if (req.isAuthenticated()) {
-                res.render('dashboard/dashboard', {username :users[0].username});
-            } else {
-                res.redirect('/login');
-            }
-        } else {
-            res.redirect("/home");
-        }
-    });
-   
-}
-
-
-exports.dashboardProfile = (req, res) => {
-    User.find((err, users) => {
-        if (!err) {
-            if (req.isAuthenticated()) {
-                res.render('dashboard/profile', {username : users[0].username, imagePath: users[0].imagePath, description: users[0].description});
-            } else {
-                res.redirect('/login');
-            }
-        } else {
-            res.redirect("/home");
-        }
-    });
-}
-
-
-
-
-
-
-
-
-
-

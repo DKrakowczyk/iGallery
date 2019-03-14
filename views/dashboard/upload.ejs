@@ -1,0 +1,31 @@
+<%- include('../partials/dashboard/header') %>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Upload photo</h4>
+                    </div>
+                    <div class="content">
+                        <form method="POST" action="/dashboard/upload/single" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Add photo to your gallery</label>
+                                        <input type="file" class="form-control" 
+                                             name="filename">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-info btn-fill pull-right">Upload photo</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/dashboard/footer') %>

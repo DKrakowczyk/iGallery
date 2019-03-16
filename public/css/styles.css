@@ -93,3 +93,15 @@
   .img-button{
 
   }
+
+  .gallery-img{
+    background-size: cover;
+     background-repeat:no-repeat;
+     height:250px;
+     width:280px;
+     transition: opacity 0.5s ease-in;
+  }
+
+  .gallery-img:hover{
+  opacity: 0.8;
+  }

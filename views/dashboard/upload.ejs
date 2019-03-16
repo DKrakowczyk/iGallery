@@ -2,37 +2,51 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <div class="card">
                     <div class="header">
                         <h4 class="title">Upload photo</h4>
                     </div>
                     <div class="content">
 
-                        <form method="POST" action="/dashboard/upload" enctype="multipart/form-data">
-                            <div class="row">
-                                <% if(status === 1) {%>
-                                <div class="alert alert-success" role="alert">
-                                    File successfully uploaded!
-                                </div>
-                                <% } else if(status === 2) { %>
-                                <div class="alert alert-danger" role="alert">
-                                    File could not be saved :(
-                                </div>
-                                <% } %>
-                                <div class="col-md-12">
+                        <div class="row">
+
+
+                            <div class="col-md-12">
+                                <form method="POST" action="/dashboard/upload" enctype="multipart/form-data">
+                                    <% if(status === 1) {%>
+                                    <div class="alert alert-success" role="alert">
+                                        File successfully uploaded!
+                                    </div>
+                                    <% } else if(status === 2) { %>
+                                    <div class="alert alert-danger" role="alert">
+                                        File could not be saved :(
+                                    </div>
+                                    <% } %>
                                     <div class="form-group">
                                         <label>Add photo to your gallery</label>
                                         <input type="file" class="form-control" name="filename">
                                     </div>
-                                </div>
+                                    <button type="submit" class="btn btn-info btn-fill pull-right">Upload photo</button>
+                                </form>
                             </div>
-                            <button type="submit" class="btn btn-info btn-fill pull-right">Upload photo</button>
-                            <div class="clearfix"></div>
-                        </form>
+
+                        </div>
+
+                        <div class="clearfix"></div>
+
                     </div>
                 </div>
             </div>
+            <% if(status === 1) {%>
+            <div class="col-md-6">
+                <div class="card card-user">
+                    <div class="disp"
+                        style="height: 600px; width:100%; background-image: url('/uploads/<%= recent %>'); background-size: cover;">
+                    </div>
+                </div>
+            </div>
+            <% } %>
         </div>
     </div>
 </div>

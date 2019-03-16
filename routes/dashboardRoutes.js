@@ -9,5 +9,6 @@ router.get('/profile', DashboardController.profile);
 router.post('/profile/update', DashboardController.updateProfile);
 router.get('/upload', DashboardController.upload);
 router.post('/upload', DashboardController.uploadPhoto);
-
+router.get('/gallery', DashboardController.galleryPage);
+router.post('/gallery', DashboardController.removePhotoFromGallery);
 module.exports = router;

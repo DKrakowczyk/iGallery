@@ -1,5 +1,5 @@
 const User = require("../models/User");
-
+const fs = require('fs');
 
 // Render dashboard
 exports.dashboardPage = (req, res) => {
@@ -14,10 +14,9 @@ exports.dashboardPage = (req, res) => {
             res.redirect("/home");
         }
     });
-
 }
 
-
+// Render profile page
 exports.profile = (req, res) => {
     User.find((err, users) => {
         if (!err) {
@@ -32,6 +31,7 @@ exports.profile = (req, res) => {
     });
 }
 
+// Update profile data
 exports.updateProfile = (req, res) => {
     User.updateOne({}, { $set: req.body }, (err) => {
         if (err) { res.send(err) }
@@ -39,6 +39,7 @@ exports.updateProfile = (req, res) => {
     });
 }
 
+// Render upload page
 exports.upload = (req, res) => {
     User.find((err, users) => {
         if (!err) {
@@ -53,19 +54,65 @@ exports.upload = (req, res) => {
     });
 }
 
+// Add photo to gallery
 exports.uploadPhoto = (req, res) => {
-
     User.find((err, users) => {
         if (!err) {
             const uploadedFile = req.files.filename;
             uploadedFile.mv('./public/uploads/' + uploadedFile.name, function (err) {
-                if (!err) { 
-                    res.render('dashboard/upload', { status: 1, username: users[0].username }); 
+                if (!err) {
+                    res.render('dashboard/upload', { status: 1, username: users[0].username, recent: uploadedFile.name });
                 }
                 else {
-                    res.render('dashboard/upload', { status: 2, username: users[0].username });
-                }});
+                    res.render('dashboard/upload', { status: 2, username: users[0].username, recent: 0 });
+                }
+            });
         }
     });
 }
 
+
+// Render gallery page
+exports.galleryPage = (req, res) => {
+    const photoArray = [];
+
+    User.find((err, users) => {
+        if (!err) {
+            fs.readdir('./public/uploads', (err, files) => {
+                if (files !== undefined) {
+                    files.forEach(file => {
+                        photoArray.push(file);
+                    });
+                    if (users.length > 0) {
+                        res.render("dashboard/gallery", { photoArray: photoArray, username: users[0].username });
+                    }
+                } else {
+                    res.render("dashboard/gallery", { photoArray: photoArray, username: users[0].username });
+                }
+            });
+        } else {
+            res.redirect("/dashboard");
+        }
+    });
+}
+
+exports.removePhotoFromGallery = (req, res) => {
+    User.find((err, users) => {
+        if (!err) {
+            const name = req.body.name;
+            fs.unlink('./public/uploads/' + name, function (err) {
+                if (err) {
+                    res.redirect('/dashboard/gallery');
+                }
+                res.redirect('/dashboard/gallery');
+            });
+        } else {
+            res.redirect("/dashboard");
+        }
+    });
+
+
+
+
+
+}

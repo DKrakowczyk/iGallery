@@ -3,6 +3,12 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
+            <% if(photoArray.length===0) { %>
+                <div class="alert alert-warning" role="alert">
+                        There are no images in the gallery <br/> <a href="/dashboard/upload">Add one here</a>
+                      </div>
+                <% } %>
+
             <%  photoArray.forEach(fname =>{ %>
             <div class="col-md-4">
                 <div class="card" style="width: 280px; ">

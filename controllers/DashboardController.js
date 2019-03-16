@@ -1,13 +1,12 @@
 const User = require("../models/User");
-const multer = require('multer');
-var upload = multer({ dest: 'uploads/' });
+
 
 // Render dashboard
 exports.dashboardPage = (req, res) => {
     User.find((err, users) => {
         if (!err) {
             if (req.isAuthenticated()) {
-                res.render('dashboard/dashboard', {username :users[0].username});
+                res.render('dashboard/dashboard', { username: users[0].username });
             } else {
                 res.redirect('/login');
             }
@@ -15,7 +14,7 @@ exports.dashboardPage = (req, res) => {
             res.redirect("/home");
         }
     });
-   
+
 }
 
 
@@ -23,7 +22,7 @@ exports.profile = (req, res) => {
     User.find((err, users) => {
         if (!err) {
             if (req.isAuthenticated()) {
-                res.render('dashboard/profile', {username : users[0].username, imagePath: users[0].imagePath, description: users[0].description});
+                res.render('dashboard/profile', { username: users[0].username, imagePath: users[0].imagePath, description: users[0].description });
             } else {
                 res.redirect('/login');
             }
@@ -34,9 +33,9 @@ exports.profile = (req, res) => {
 }
 
 exports.updateProfile = (req, res) => {
-    User.updateOne({},{$set: req.body}, (err) => {
-        if(err) {res.send(err)}
-        else {res.redirect('/dashboard/profile')}
+    User.updateOne({}, { $set: req.body }, (err) => {
+        if (err) { res.send(err) }
+        else { res.redirect('/dashboard/profile') }
     });
 }
 
@@ -44,7 +43,7 @@ exports.upload = (req, res) => {
     User.find((err, users) => {
         if (!err) {
             if (req.isAuthenticated()) {
-                res.render('dashboard/upload', {username : users[0].username, imagePath: users[0].imagePath, description: users[0].description});
+                res.render('dashboard/upload', { status: "", username: users[0].username });
             } else {
                 res.redirect('/login');
             }
@@ -54,8 +53,19 @@ exports.upload = (req, res) => {
     });
 }
 
-exports.save = upload.single('filename');
+exports.uploadPhoto = (req, res) => {
 
-exports.uploadPhoto =  (req, res) => {
-res.redirect('/');
+    User.find((err, users) => {
+        if (!err) {
+            const uploadedFile = req.files.filename;
+            uploadedFile.mv('./public/uploads/' + uploadedFile.name, function (err) {
+                if (!err) { 
+                    res.render('dashboard/upload', { status: 1, username: users[0].username }); 
+                }
+                else {
+                    res.render('dashboard/upload', { status: 2, username: users[0].username });
+                }});
+        }
+    });
 }
+

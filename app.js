@@ -1,5 +1,6 @@
 const express = require("express");
 const ejs = require("ejs");
+const fileUpload = require('express-fileupload');
 const bodyParser = require("body-parser");
 const path = require("path");
 const passport = require("./auth/passport");
@@ -24,7 +25,7 @@ app.use(session({
 // passport 
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(fileUpload());
 app.use('/', homeRoutes);
 app.use('/dashboard', dashboardRoutes);
 

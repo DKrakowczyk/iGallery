@@ -8,13 +8,22 @@
                         <h4 class="title">Upload photo</h4>
                     </div>
                     <div class="content">
-                        <form method="POST" action="/dashboard/upload/single" enctype="multipart/form-data">
+
+                        <form method="POST" action="/dashboard/upload" enctype="multipart/form-data">
                             <div class="row">
+                                <% if(status === 1) {%>
+                                <div class="alert alert-success" role="alert">
+                                    File successfully uploaded!
+                                </div>
+                                <% } else if(status === 2) { %>
+                                <div class="alert alert-danger" role="alert">
+                                    File could not be saved :(
+                                </div>
+                                <% } %>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Add photo to your gallery</label>
-                                        <input type="file" class="form-control" 
-                                             name="filename">
+                                        <input type="file" class="form-control" name="filename">
                                     </div>
                                 </div>
                             </div>

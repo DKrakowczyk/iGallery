@@ -8,6 +8,6 @@ router.get('/', DashboardController.dashboardPage);
 router.get('/profile', DashboardController.profile);
 router.post('/profile/update', DashboardController.updateProfile);
 router.get('/upload', DashboardController.upload);
-router.post('/upload/single', DashboardController.save, DashboardController.uploadPhoto);
+router.post('/upload', DashboardController.uploadPhoto);
 
 module.exports = router;

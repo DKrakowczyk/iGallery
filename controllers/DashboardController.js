@@ -1,12 +1,23 @@
 const User = require("../models/User");
+const Taksk = require('../models/Task');
 const fs = require('fs');
 
 // Render dashboard
 exports.dashboardPage = (req, res) => {
+    const photoArray = [];
+
     User.find((err, users) => {
         if (!err) {
             if (req.isAuthenticated()) {
-                res.render('dashboard/dashboard', { username: users[0].username });
+                fs.readdir('./public/uploads', (err, files) => {
+                    if (files !== undefined) {
+                        files.forEach(file => {
+                            photoArray.push(file);
+                        });
+                    res.render('dashboard/dashboard', { username: users[0].username, photoArray:photoArray.slice(0,3)});
+                    
+                    }
+                });
             } else {
                 res.redirect('/login');
             }
@@ -17,7 +28,7 @@ exports.dashboardPage = (req, res) => {
 }
 
 // Render profile page
-exports.profile = (req, res) => {
+exports.profilePage = (req, res) => {
     User.find((err, users) => {
         if (!err) {
             if (req.isAuthenticated()) {
@@ -33,14 +44,16 @@ exports.profile = (req, res) => {
 
 // Update profile data
 exports.updateProfile = (req, res) => {
-    User.updateOne({}, { $set: req.body }, (err) => {
-        if (err) { res.send(err) }
-        else { res.redirect('/dashboard/profile') }
-    });
+    if (req.isAuthenticated()) {
+        User.updateOne({}, { $set: req.body }, (err) => {
+            if (err) { res.send(err) }
+            else { res.redirect('/dashboard/profile') }
+        });
+    }
 }
 
 // Render upload page
-exports.upload = (req, res) => {
+exports.uploadPage = (req, res) => {
     User.find((err, users) => {
         if (!err) {
             if (req.isAuthenticated()) {
@@ -49,70 +62,98 @@ exports.upload = (req, res) => {
                 res.redirect('/login');
             }
         } else {
-            res.redirect("/home");
+            res.redirect("/");
         }
     });
 }
 
 // Add photo to gallery
 exports.uploadPhoto = (req, res) => {
-    User.find((err, users) => {
-        if (!err) {
-            const uploadedFile = req.files.filename;
-            uploadedFile.mv('./public/uploads/' + uploadedFile.name, function (err) {
-                if (!err) {
-                    res.render('dashboard/upload', { status: 1, username: users[0].username, recent: uploadedFile.name });
-                }
-                else {
-                    res.render('dashboard/upload', { status: 2, username: users[0].username, recent: 0 });
-                }
-            });
-        }
-    });
+    if (req.isAuthenticated()) {
+        User.find((err, users) => {
+            if (!err) {
+                const uploadedFile = req.files.filename;
+                uploadedFile.mv('./public/uploads/' + uploadedFile.name, function (err) {
+                    if (!err) {
+                        res.render('dashboard/upload', { status: 1, username: users[0].username, recent: uploadedFile.name });
+                    }
+                    else {
+                        res.render('dashboard/upload', { status: 2, username: users[0].username, recent: 0 });
+                    }
+                });
+            }
+        });
+    }
 }
 
 
 // Render gallery page
 exports.galleryPage = (req, res) => {
     const photoArray = [];
-
-    User.find((err, users) => {
-        if (!err) {
-            fs.readdir('./public/uploads', (err, files) => {
-                if (files !== undefined) {
-                    files.forEach(file => {
-                        photoArray.push(file);
-                    });
-                    if (users.length > 0) {
+    if (req.isAuthenticated()) {
+        User.find((err, users) => {
+            if (!err) {
+                fs.readdir('./public/uploads', (err, files) => {
+                    if (files !== undefined) {
+                        files.forEach(file => {
+                            photoArray.push(file);
+                        });
+                        if (users.length > 0) {
+                            res.render("dashboard/gallery", { photoArray: photoArray, username: users[0].username });
+                        }
+                    } else {
                         res.render("dashboard/gallery", { photoArray: photoArray, username: users[0].username });
                     }
-                } else {
-                    res.render("dashboard/gallery", { photoArray: photoArray, username: users[0].username });
-                }
-            });
-        } else {
-            res.redirect("/dashboard");
-        }
-    });
+                });
+            } else {
+                res.redirect("/dashboard");
+            }
+        });
+    } else {
+        res.redirect("/");
+    }
 }
 
 exports.removePhotoFromGallery = (req, res) => {
-    User.find((err, users) => {
-        if (!err) {
-            const name = req.body.name;
-            fs.unlink('./public/uploads/' + name, function (err) {
-                if (err) {
+    if (req.isAuthenticated()) {
+        User.find((err, users) => {
+            if (!err) {
+                const name = req.body.name;
+                fs.unlink('./public/uploads/' + name, function (err) {
+                    if (err) {
+                        res.redirect('/dashboard/gallery');
+                    }
                     res.redirect('/dashboard/gallery');
-                }
-                res.redirect('/dashboard/gallery');
-            });
-        } else {
-            res.redirect("/dashboard");
-        }
-    });
-
-
-
-
-
+                });
+            } else {
+                res.redirect("/dashboard");
+            }
+        });
+    } else {
+        res.redirect("/");
+    }
 }
+
+
+exports.tasksPage = (req, res) => {
+    if(req.isAuthenticated()){
+       User.find((err, user) => {
+        if(!err) {
+            res.render('dashboard/tasks', {username: user[0].username});
+        } else {
+            res.redirect('/login');
+        }
+       });
+    } else{
+        res.redirect('/');
+    }
+}
+
+exports.addTask = (req, res) => {
+    if(req.isAuthenticated()){
+
+    } else{
+        res.redirect('/');
+    }
+}
+

@@ -1,0 +1,53 @@
+<%- include('../partials/dashboard/header') %>
+<div class="content">
+        <div class="container-fluid">
+                <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Task field</label>
+                                <form action="/dashboard/tasks" method="post">
+                                <textarea rows="3" class="form-control"
+                                    placeholder="What do you want to do in nearly future?"
+                                    name = "task"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-info btn-fill pull-right">Add task</button>
+                </form>
+                    <div class="clearfix"></div>
+<div class="row" style="margin-top:5%;">
+        <h5>Your tasks</h5>
+        <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Task</th>
+                    <th scope="col">Action</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                   
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                 
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                  
+                  </tr>
+                </tbody>
+              </table>
+</div></div>
+</div>
+
+<%- include('../partials/dashboard/footer') %>

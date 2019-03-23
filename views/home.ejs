@@ -1,9 +1,8 @@
 <%- include('partials/header') %>
 
 <body>
- 
+  
   <main role="main">
-
     <section class="about text-center">
       <div class="container">
     
@@ -21,12 +20,9 @@
             <div class="grid-sizer"></div>
             <%  photoArray.forEach(fname =>{ %>
               <div class="grid-item">
-                  <img src="/uploads/<%= fname %>" />
+                  <img  src="/uploads/<%= fname %>" />
                 </div>
             <% }) %>
-           
-           
-          
         </div>
       </div>
     </section>

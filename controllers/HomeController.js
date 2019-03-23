@@ -13,7 +13,7 @@ fields: {
 // Render login page
 exports.homePage = (req, res) => {
     const photoArray = [];
-    
+
     User.find((err, users) => {
         if (!err) {
             fs.readdir('./public/uploads', (err, files) => {

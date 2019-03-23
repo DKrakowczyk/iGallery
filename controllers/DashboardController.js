@@ -135,25 +135,4 @@ exports.removePhotoFromGallery = (req, res) => {
 }
 
 
-exports.tasksPage = (req, res) => {
-    if(req.isAuthenticated()){
-       User.find((err, user) => {
-        if(!err) {
-            res.render('dashboard/tasks', {username: user[0].username});
-        } else {
-            res.redirect('/login');
-        }
-       });
-    } else{
-        res.redirect('/');
-    }
-}
-
-exports.addTask = (req, res) => {
-    if(req.isAuthenticated()){
-
-    } else{
-        res.redirect('/');
-    }
-}
 

@@ -2,6 +2,7 @@
 <div class="content">
         <div class="container-fluid">
         <div class="row">
+          <% if(photoArray.length > 0) {%>
            <h5>Recent photos</h5>
            <%  photoArray.forEach(fname =>{ %>
             <div class="col-md-4 col-sm-6">
@@ -10,7 +11,12 @@
                     </div>
             </a>
             </div>
-            <% }) %>
+            <% });} else { %>
+              <div class="alert alert-success" role="alert">
+                  Add some photos to your gallery. 
+                  They will be shown there!
+                </div>
+           <% } %>
         </div>
         <div class="row" style="margin-top:5%;">
                 <h5>Your tasks</h5>

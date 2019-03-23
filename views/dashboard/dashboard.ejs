@@ -1,57 +1,62 @@
 <%- include('../partials/dashboard/header') %>
 <div class="content">
-        <div class="container-fluid">
-        <div class="row">
-          <% if(photoArray.length > 0) {%>
-           <h5>Recent photos</h5>
-           <%  photoArray.forEach(fname =>{ %>
-            <div class="col-md-4 col-sm-6">
-                <a href="/dashboard/gallery">
-                    <div class="gallery-img" style="background-image: url('/uploads/<%= fname %>'); height:200px;" alt="Card image cap">
-                    </div>
-            </a>
-            </div>
-            <% });} else { %>
-              <div class="alert alert-success" role="alert">
-                  Add some photos to your gallery. 
-                  They will be shown there!
-                </div>
-           <% } %>
+  <div class="container-fluid">
+    <div class="row">
+      <% if(photoArray.length > 0) {%>
+      <h5>Recent photos</h5>
+      <%  photoArray.forEach(fname =>{ %>
+      <div class="col-md-4 col-sm-6">
+        <a href="/dashboard/gallery">
+          <div class="gallery-img" style="background-image: url('/uploads/<%= fname %>'); height:200px;"
+            alt="Card image cap">
+          </div>
+        </a>
+      </div>
+      <% });} else { %>
+        <div class="col-md-8">
+        <div class="alert alert-info">
+            <span data-notify="message">Add some photos to your gallery. <br/> They will be shown there!</span>
         </div>
-        <div class="row" style="margin-top:5%;">
-                <h5>Your tasks</h5>
-                <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Task</th>
-                            <th scope="col">Action</th>
-                            
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                           
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                         
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                          
-                          </tr>
-                        </tbody>
-                      </table>
-        </div>
+      </div>
+      <% } %>
     </div>
+    <div class="row" style="margin-top:5%;">
+      <% if(tasks.length > 0) {%>
+        <div class="card">
+            <div class="header">
+              <h4 class="title">Your tasks</h4>
+           
+            </div>
+            <div class="content table-responsive table-full-width">
+              <table class="table table-hover table-striped">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Task</th>
+                    <th>Added</th>
+                
+  
+                  </tr>
+                </thead>
+                <tbody>
+                  <%  let index = 1; tasks.forEach(task =>{ %>
+                  <tr>
+                    <th scope="row"><%= index %></th>
+                    <td><%= task.task %></td>
+                    <td><%= task.date %></td>
+                  
+  
+                  </tr>
+                </tbody></table></div></div>
+      <% index++;});} else {%>
+        <div class="col-md-8">
+        <div class="alert alert-info">
+            <span data-notify="message">Add some tasks if you wish. <br/> They will be shown right there!</span>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
 </div>
 
 

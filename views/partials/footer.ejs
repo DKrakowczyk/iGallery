@@ -12,13 +12,17 @@
 <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 <script>
-$('.grid').isotope({
+var $grid = $('.grid').isotope({
   itemSelector: '.grid-item',
   percentPosition: true,
   masonry: {
     columnWidth: '.grid-sizer'
   }
 });
+// layout Isotope after each image loads
+$grid.imagesLoaded().progress( function() {
+  $grid.isotope('layout');
+});  
 
 </script>
 

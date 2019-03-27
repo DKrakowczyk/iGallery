@@ -23,15 +23,17 @@ exports.homePage = (req, res) => {
                     });
                     if (users.length > 0) {
                         res.render("home", { photoArray: photoArray, photo: users[0].imagePath, username: users[0].username, desc: users[0].description });
+                    } else {
+                        res.render("home", {
+                            photoArray: [], photo: "images/avatars/default.jpg", username: "Default user", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mattis lacinia quam, sit amet pulvinar nisl volutpat id. Aenean non semper tellus, sed malesuada augue. Nullam posuere rutrum mi in scelerisque. Nulla ex nunc, feugiat eget diam at, fermentum sagittis dolor. Proin tempor augue vitae dui suscipit efficitur."
+                        });
                     }
-                } else {
-                    res.render("home", {
-                        photoArray: [], photo: "images/avatars/default.jpg", username: "Default user", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mattis lacinia quam, sit amet pulvinar nisl volutpat id. Aenean non semper tellus, sed malesuada augue. Nullam posuere rutrum mi in scelerisque. Nulla ex nunc, feugiat eget diam at, fermentum sagittis dolor. Proin tempor augue vitae dui suscipit efficitur."
-                    });
                 }
             });
         } else {
-            res.redirect("/home");
+            res.render("home", {
+                photoArray: [], photo: "images/avatars/default.jpg", username: "Default user", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mattis lacinia quam, sit amet pulvinar nisl volutpat id. Aenean non semper tellus, sed malesuada augue. Nullam posuere rutrum mi in scelerisque. Nulla ex nunc, feugiat eget diam at, fermentum sagittis dolor. Proin tempor augue vitae dui suscipit efficitur."
+            });
         }
     });
 }

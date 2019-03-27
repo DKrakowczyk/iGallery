@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/iUserDB", {useNewUrlParser: true})
+mongoose.connect(process.env.DATABASE, {useNewUrlParser: true})
         .then(console.log("Connected to mongoDB..."))
         .catch(()=> {
             console.log("Connection to mongoDB refused...");

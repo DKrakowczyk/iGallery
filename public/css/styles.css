@@ -4,27 +4,26 @@
     font-family: 'Montserrat';
     font-weight: lighter;
 }
+
 .profile{
   text-align: center;
 }
+
 .img-circle{
     border-radius: 150px;
 }
+
 .login-button{
     float: right;
    
 }
-
 .login-button :hover{
     text-decoration: none;
     color: grey;
 }
-
 .about{
     margin-top:8vh;
 }
-
-
   
   /* clear fix */
   .grid:after {
@@ -39,7 +38,9 @@
   .grid-item {
     width: 33.333%;
   }
-  
+  .desc{
+    white-space: pre-wrap;
+  }
   .grid-item {
     float: left;
     transition: opacity 0.5s ease-in;
@@ -88,10 +89,6 @@
   .grid-item:hover{
     opacity: 0.5;
     pointer: cursor;
-  }
-
-  .img-button{
-
   }
 
   .gallery-img{

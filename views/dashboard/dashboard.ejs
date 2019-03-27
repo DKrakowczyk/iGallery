@@ -13,51 +13,52 @@
         </a>
       </div>
       <% });} else { %>
-        <div class="col-md-8">
+      <div class="col-md-8">
         <div class="alert alert-info">
-            <span data-notify="message">Add some photos to your gallery. <br/> They will be shown there!</span>
+          <span data-notify="message">Add some photos to your gallery. <br /> They will be shown there!</span>
         </div>
       </div>
       <% } %>
     </div>
     <div class="row" style="margin-top:5%;">
       <% if(tasks.length > 0) {%>
-        <div class="card">
-            <div class="header">
-              <h4 class="title">Your tasks</h4>
-           
-            </div>
-            <div class="content table-responsive table-full-width">
-              <table class="table table-hover table-striped">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Task</th>
-                    <th>Added</th>
-                
-  
-                  </tr>
-                </thead>
-                <tbody>
-                  <%  let index = 1; tasks.forEach(task =>{ %>
-                  <tr>
-                    <th scope="row"><%= index %></th>
-                    <td><%= task.task %></td>
-                    <td><%= task.date %></td>
-                  
-  
-                  </tr>
-                </tbody></table></div></div>
-      <% index++;});} else {%>
-        <div class="col-md-8">
+      <div class="card">
+        <div class="header">
+          <h4 class="title">Your tasks</h4>
+
+        </div>
+        <div class="content table-responsive table-full-width">
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Task</th>
+                <th>Added</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%  let index = 1; tasks.forEach(task =>{ %>
+              <tr>
+                <th scope="row"><%= index %></th>
+                <td><%= task.task %></td>
+                <td><%= task.date %></td>
+              </tr>
+              <% index++;});%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <% } else {%>
+      <div class="col-md-8">
         <div class="alert alert-info">
-            <span data-notify="message">Add some tasks if you wish. <br/> They will be shown right there!</span>
+          <span data-notify="message">Add some tasks if you wish. <br /> They will be shown right there!</span>
         </div>
       </div>
       <% } %>
     </div>
   </div>
-</div>
+
 
 
 

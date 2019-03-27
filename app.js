@@ -31,6 +31,6 @@ app.use(fileUpload());
 app.use('/', homeRoutes);
 app.use('/dashboard', dashboardRoutes);
 
-app.listen(process.env.port || 3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log(`Server is up!`);
 });

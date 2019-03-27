@@ -14,10 +14,11 @@ exports.dashboardPage = (req, res) => {
                         files.forEach(file => {
                             photoArray.push(file);
                         });
-                        Task.find((err, tasks) => {
-                            res.render('dashboard/dashboard', { username: users[0].username, photoArray:photoArray.slice(0,3), tasks:tasks});
-                        })
                     }
+                    Task.find((err, tasks) => {
+                        res.render('dashboard/dashboard', { username: users[0].username, photoArray: photoArray.slice(0, 3), tasks: tasks });
+                    })
+
                 });
             } else {
                 res.redirect('/login');

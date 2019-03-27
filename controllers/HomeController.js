@@ -44,11 +44,13 @@ exports.loginPage = (req, res) => {
         User.find((err, users) => {
             if (!err) {
                 if (users.length > 0) {
+                    console.log("Znalazlem uzytkownika");
                     res.render("login", { isRegistered: 1, accountType: users[0].accountType });
                 } else {
                     res.render("login", { isRegistered: 0 });
                 }
             } else {
+                console.log("Error w szukaniu usera");
                 res.redirect("/home");
             }
         });

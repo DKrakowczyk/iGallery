@@ -8,13 +8,14 @@
     "start": "npm run build && node ./build/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf build && mkdir build",
-    "build-babel":  "babel -d ./build --ignore node_modules . -s",
+    "build-babel": "babel -d ./build --ignore node_modules . -s",
     "build": "npm run clean && npm run build-babel"
   },
   "author": "DKrakowczyk",
   "license": "ISC",
   "dependencies": {
     "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "body-parser": "^1.18.3",
     "dotenv": "^7.0.0",

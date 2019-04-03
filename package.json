@@ -4,7 +4,8 @@
   "description": "Simple app created to share your best photos",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon --exec babel-node app.js ",
+    "start-local": "nodemon --exec babel-node app.js ",
+    "start": "npm run build && node ./build/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf build && mkdir build",
     "build-babel": "babel -d ./build ./src -s",
@@ -13,6 +14,8 @@
   "author": "DKrakowczyk",
   "license": "ISC",
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "body-parser": "^1.18.3",
     "dotenv": "^7.0.0",
     "ejs": "^2.6.1",

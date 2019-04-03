@@ -3,29 +3,30 @@
 <body class="text-center">
     <div class="container">
         <div class="row">
-                <form class="form-signin" action="/login" method="POST">
-                        <hr>
-                    <h1 class="profile h3 mb-3 font-weight-normal">please sign in.</h1>
+            <form class="form-signin" action="/login" method="POST">
+                <hr>
+                <h1 class="profile h3 mb-3 font-weight-normal">please sign in.</h1>
 
-                        <% if(isRegistered === 1 && accountType === "local") { %>
-                        <input type="text" name ="username" class="form-control" placeholder="username." required autofocus>
-                       
-                        <input type="password" name ="password" class="form-control" placeholder="password." required>
-                       
-                        <button  type="submit" class="profile btn btn-outline-dark btn-block">log in</button>
-                        <% } %>
-                        <% if(isRegistered === 0) { %>
-                        <a href="/register" class=" profile btn btn-outline-dark btn-block">sign up</a>
-                        <% } %>
-                        <% if(isRegistered === 0 || (isRegistered === 1 && accountType === 'instagram')) { %>
-                        <a href="/auth/instagram" class=" profile btn btn-outline-dark btn-block">log in using instagram</a>
-                        <% } %>
-                        <hr>
-                        <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
-                        <hr>
-                </form>
+                <% if(isRegistered === 1 && accountType === "local") { %>
+                <input type="text" name="username" class="form-control" placeholder="username." required autofocus>
+
+                <input type="password" name="password" class="form-control" placeholder="password." required>
+
+                <button type="submit" class="profile btn btn-outline-dark btn-block">log in</button>
+                <% } %>
+                <% if(isRegistered === 0) { %>
+                <a href="/register" class=" profile btn btn-outline-dark btn-block">sign up</a>
+                <% } %>
+                <% if(isRegistered === 0 || (isRegistered === 1 && accountType === 'instagram')) { %>
+                <a href="/auth/instagram" class=" profile btn btn-outline-dark btn-block">log in using instagram</a>
+                <% } %>
+                <hr>
+                <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+                <hr>
+            </form>
 
         </div>
     </div>
 </body>
+
 </html>

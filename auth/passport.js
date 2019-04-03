@@ -1,7 +1,9 @@
-const passport = require("passport");
-const InstagramStrategy = require("passport-instagram").Strategy;
-const User = require("../models/User");
+import passport from 'passport';
+import Instagram from 'passport-instagram';
+import User from '../models/User';
 
+
+const InstagramStrategy = Instagram.Strategy;
 passport.use(User.createStrategy());
 
 passport.serializeUser(function (user, done) {
@@ -25,13 +27,13 @@ passport.use(new InstagramStrategy({
 
     User.find((err, users) => {
       let newUser = undefined;
-      if(users.length < 1) {
-         newUser = new User({
+      if (users.length < 1) {
+        newUser = new User({
           instagramId: profile.id,
           username: profile.username,
           imagePath: profile._json.data.profile_picture,
           description: profile._json.data.bio,
-          accountType : "instagram"
+          accountType: "instagram"
         }).save();
       } else {
         return done(err, users[0]);
@@ -40,7 +42,4 @@ passport.use(new InstagramStrategy({
   }
 ));
 
-
-
-
-module.exports = passport;
+export default passport;

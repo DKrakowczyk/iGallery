@@ -4,20 +4,21 @@
     <div class="container-fluid">
         <div class="row">
             <% if(photoArray.length===0) { %>
-                <div class="alert alert-info" role="alert">
-                        There are no images in the gallery <br/> <a href="/dashboard/upload">Add one here</a>
-                      </div>
-                <% } %>
+            <div class="alert alert-info" role="alert">
+                There are no images in the gallery <br /> <a href="/dashboard/upload">Add one here</a>
+            </div>
+            <% } %>
 
             <%  photoArray.forEach(fname =>{ %>
             <div class="col-md-4">
                 <div class="card" style="width: 280px; ">
-                    <div class="gallery-img" style="background-image: url('/uploads/<%= fname %>');" alt="Card image cap">
+                    <div class="gallery-img" style="background-image: url('/uploads/<%= fname %>');"
+                        alt="Card image cap">
                     </div>
-                        <div class="card-body">
+                    <div class="card-body">
                         <h5 class="card-title" style="text-align: center;"><%= fname %></h5>
                         <form action="/dashboard/gallery" method="post">
-                            <input type="hidden" name="name" value="<%= fname %>" >
+                            <input type="hidden" name="name" value="<%= fname %>">
                             <button type="submit" class="btn btn-danger btn-block"> Delete photo </button>
                         </form>
                     </div>

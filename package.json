@@ -4,6 +4,7 @@
   "description": "Simple app created to share your best photos",
   "main": "app.js",
   "scripts": {
+    "start": "nodemon --exec babel-node app.js ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "DKrakowczyk",
@@ -22,5 +23,11 @@
     "passport": "^0.4.0",
     "passport-instagram": "^1.0.0",
     "passport-local-mongoose": "^5.0.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.3"
   }
 }

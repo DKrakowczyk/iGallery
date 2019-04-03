@@ -3,13 +3,13 @@ const router = express.Router();
 const HomeController = require('../controllers/HomeController');
 const AuthController = require('../controllers/AuthController');
 
-router.get('/', HomeController.homePage);
-router.get('/login', HomeController.loginPage);
-router.get('/register', HomeController.registerPage);
-router.get('/logout', AuthController.logout);
-router.post('/register', AuthController.registerUser);
-router.post('/login', AuthController.loginUser);
-router.get('/auth/instagram', AuthController.authInstagram);
-router.get('/auth/instagram/dashboard', AuthController.authInstagramFailure, AuthController.authInstagramCallback);
+router.get('/', HomeController.default.homePage);
+router.get('/login', HomeController.default.loginPage);
+router.get('/register', HomeController.default.registerPage);
+router.get('/logout', AuthController.default.logout);
+router.post('/register', AuthController.default.registerUser);
+router.post('/login', AuthController.default.loginUser);
+router.get('/auth/instagram', AuthController.default.authInstagram);
+router.get('/auth/instagram/dashboard', AuthController.default.authInstagramFailure, AuthController.default.authInstagramCallback);
 
-module.exports = router;
+export default router;

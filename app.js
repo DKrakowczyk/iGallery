@@ -1,15 +1,15 @@
-const dotenv = require('dotenv');
-dotenv.config({path: '.env'});
-const express = require("express");
-const ejs = require("ejs");
-const fileUpload = require('express-fileupload');
-const bodyParser = require("body-parser");
-const path = require("path");
-const passport = require("./auth/passport");
-const session = require("express-session"); //1
+import {} from 'dotenv/config';
+import express from 'express';
+import ejs from 'ejs';
+import fileUpload from 'express-fileupload';
+import bodyParser from 'body-parser';
+import path from 'path';
+import passport from './auth/passport';
+import session from 'express-session';
 // Routes
-const homeRoutes = require("./routes/homeRoutes");
-const dashboardRoutes = require("./routes/dashboardRoutes");
+import homeRoutes from './routes/homeRoutes';
+import dashboardRoutes from './routes/dashboardRoutes';
+
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));

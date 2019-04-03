@@ -1,5 +1,5 @@
-const User = require("../models/User");
-const passport = require("../auth/passport");
+import User from '../models/User';
+import passport from '../auth/passport';
 
 /* User
 fields: {
@@ -8,54 +8,57 @@ fields: {
     description
 }
 */
+export default {
+    async registerUser(req, res) {
+        const username = req.body.username;
+        const Password = req.body.password;
 
-// Register user
-exports.registerUser = (req, res) => {
-    const username = req.body.username;
-    const Password = req.body.password;
+        await User.register({ username: username, imagePath: "sciezka", description: "opis" }, Password, (err, user) => {
+            if (err) {
+                console.log(err);
+                res.redirect("/register");
+            } else {
+                passport.authenticate("local")(req, res, () => {
+                    res.redirect("/dashboard");
+                });
+            }
+        });
+    },
 
-    User.register({ username: username, imagePath: "sciezka", description: "opis" }, Password, (err, user) => {
-        if (err) {
-            console.log(err);
-            res.redirect("/register");
-        } else {
-            passport.authenticate("local")(req, res, () => {
-                res.redirect("/dashboard");
-            });
-        }
-    });
-}
+    async loginUser(req, res) {
+        const user = new User({
+            username: req.body.username,
+            password: req.body.password
+        });
 
-// Login user
-exports.loginUser = (req, res) => {
-    const user = new User({
-        username: req.body.username,
-        password: req.body.password
-    });
+        await req.login(user, (err) => {
+            if (err) {
+                console.log(err);
+                res.redirect("/register");
+            } else {
+                passport.authenticate("local")(req, res, () => {
+                    res.redirect("/dashboard");
+                });
+            }
+        });
+    },
 
-    req.login(user, (err) => {
-        if (err) {
-            console.log(err);
-            res.redirect("/register");
-        } else {
-            passport.authenticate("local")(req, res, () => {
-                res.redirect("/dashboard");
-            });
-        }
-    });
-} 
+    authInstagram() {
+        passport.authenticate('instagram');
+    },
 
-// Instagram auth
-exports.authInstagram = passport.authenticate('instagram');
+    authInstagramFailure() {
+        passport.authenticate('instagram', { failureRedirect: '/login' });
+    },
 
-exports.authInstagramFailure = passport.authenticate('instagram', { failureRedirect: '/login' });
+    authInstagramCallback(req, res) {
+        res.redirect('/dashboard');
+    },
 
-exports.authInstagramCallback = (req, res) => {
-    res.redirect('/dashboard');
-}
+    async logout(req, res) {
+        await req.logout();
+        res.redirect("/login");
+    }
 
-// Logout
-exports.logout = (req, res) => {
-    req.logout();
-    res.redirect("/login");
+
 }

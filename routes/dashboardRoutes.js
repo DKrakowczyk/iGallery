@@ -7,23 +7,23 @@ const ProfileController = require('../controllers/ProfileController');
 const UploadController = require('../controllers/UploadController');
 
 // Dashboard controller actions
-router.get('/', DashboardController.dashboardPage);
+router.get('/', DashboardController.default.dashboardPage);
 
 // Profile controller actions
-router.get('/profile', ProfileController.renderProfilePage);
-router.post('/profile/update', ProfileController.updateProfile);
+router.get('/profile', ProfileController.default.renderProfilePage);
+router.post('/profile/update', ProfileController.default.updateProfile);
 
 // Upload controller actions
-router.get('/upload', UploadController.renderUploadPage);
-router.post('/upload', UploadController.uploadPhoto);
+router.get('/upload', UploadController.default.renderUploadPage);
+router.post('/upload', UploadController.default.uploadPhoto);
 
 // Gallery controller actions
-router.get('/gallery', GalleryController.renderGalleryPage);
-router.post('/gallery', GalleryController.removePhotoFromGallery);
+router.get('/gallery', GalleryController.default.renderGalleryPage);
+router.post('/gallery', GalleryController.default.removePhotoFromGallery);
 
 // Tasks controller actions
-router.get('/tasks', TaskController.renderTasksPage);
-router.post('/tasks', TaskController.addTask);
-router.post('/tasks/remove', TaskController.removeTask);
+router.get('/tasks', TaskController.default.renderTasksPage);
+router.post('/tasks', TaskController.default.addTask);
+router.post('/tasks/remove', TaskController.default.removeTask);
 
-module.exports = router;
+export default router;

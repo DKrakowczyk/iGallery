@@ -5,7 +5,10 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon --exec babel-node app.js ",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf build && mkdir build",
+    "build-babel": "babel -d ./build ./src -s",
+    "build": "npm run clean && npm run build-babel"
   },
   "author": "DKrakowczyk",
   "license": "ISC",

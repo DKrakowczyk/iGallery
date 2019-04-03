@@ -8,7 +8,7 @@
     "start": "npm run build && node ./build/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf build && mkdir build",
-    "build-babel":  "babel -d ./build --ignore node_modules/**/*.js . -s",
+    "build-babel":  "babel -d ./build --ignore node_modules . -s",
     "build": "npm run clean && npm run build-babel"
   },
   "author": "DKrakowczyk",
